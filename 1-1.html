@@ -2,106 +2,146 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Video</title>
 
 <style>
 
-html, body {
-  margin: 0;
-  padding: 0;
-  background: #f2f2f2;
-  font-family: Arial, sans-serif;
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
+html,
 body{
-  overflow-x: hidden;
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+    background:
+    radial-gradient(circle at top,
+    #1e1e1e 0%,
+    #0c0c0c 40%,
+    #000 100%);
+    font-family:
+    Arial,
+    sans-serif;
 }
 
-/* PANTALLA INICIAL */
-#startScreen{
-  position: fixed;
-  inset: 0;
-  background: #f0f0f0;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-/* BOTÓN PLAY */
-#playBtn{
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,.12);
-  transition: .2s ease;
-}
-
-#playBtn:hover{
-  transform: scale(1.05);
-}
-
-#playBtn::before{
-  content: '';
-  border-style: solid;
-  border-width: 9px 0 9px 14px;
-  border-color: transparent transparent transparent #000;
-  margin-left: 3px;
-}
-
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 80px 8px 10px;
-  box-sizing: border-box;
-}
-
-.video-wrapper{
-  background: #ffffff;
-  padding: 6px;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.12);
-  width: 100%;
-  max-width: 430px;
-}
-
-video {
-  width: 100%;
-  border-radius: 12px;
-  display: block;
-  background: #000;
+/* CONTENEDOR */
+.page-wrapper{
+    width:100%;
+    min-height:100vh;
+    position:relative;
 }
 
 /* BOTÓN TELEGRAM */
-#telegramBtn {
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 24px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 25px;
-  cursor: pointer;
-  z-index: 9999;
-  border: none;
-  transition: .3s ease;
-  background: linear-gradient(135deg, #0088cc, #00bfff);
-  color: #fff;
-  box-shadow: 0 0 15px rgba(0,136,204,.35);
-  text-decoration: none;
-  white-space: nowrap;
+.telegram-top{
+    position:fixed;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:99999;
 }
 
-#telegramBtn:hover {
-  transform: translateX(-50%) scale(1.05);
+.telegram-btn{
+    text-decoration:none;
+    color:#fff;
+    background:
+    linear-gradient(
+        135deg,
+        #27A5E7,
+        #0088cc
+    );
+    padding:12px 24px;
+    border-radius:999px;
+    font-size:16px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    box-shadow:
+    0 8px 30px
+    rgba(39,165,231,.30);
+    transition:.25s ease;
+}
+
+.telegram-btn:hover{
+    transform:scale(1.05);
+}
+
+/* CONTENEDOR VIDEO */
+.video-container{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:
+    85px 12px 20px;
+}
+
+/* VIDEO MÓVIL TIKTOK */
+.video-shell{
+    width:100%;
+    max-width:430px;
+    height:calc(100vh - 115px);
+    border-radius:28px;
+    overflow:hidden;
+    background:#000;
+    position:relative;
+    box-shadow:
+    0 0 45px
+    rgba(0,0,0,.65),
+    0 12px 45px
+    rgba(0,0,0,.50);
+}
+
+#videoPlayer{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#000;
+    display:block;
+}
+
+/* DESKTOP */
+@media (min-width:768px){
+
+    .video-container{
+        padding:
+        110px 25px 40px;
+    }
+
+    .video-shell{
+        max-width:1000px;
+        height:82vh;
+        border-radius:22px;
+    }
+
+    .telegram-btn{
+        font-size:17px;
+        padding:13px 28px;
+    }
+}
+
+/* MÓVIL PEQUEÑO */
+@media (max-width:420px){
+
+    .video-shell{
+        height:
+        calc(100vh - 105px);
+        border-radius:22px;
+    }
+
+    .telegram-btn{
+        font-size:15px;
+        padding:11px 18px;
+    }
 }
 
 </style>
@@ -109,65 +149,131 @@ video {
 
 <body>
 
-<!-- PANTALLA INICIAL -->
-<div id="startScreen">
-  <div id="playBtn"></div>
-</div>
+<div class="page-wrapper">
 
-<a id="telegramBtn" href="https://t.me/angelenelring">
-  ✈️ ÚNETE A TELEGRAM
-</a>
+    <!-- TELEGRAM -->
+    <div class="telegram-top">
+        <a href="https://t.me/angelenelring"
+           target="_blank"
+           class="telegram-btn">
+           📲 Ver más videos
+        </a>
+    </div>
 
-<div class="container">
+    <!-- VIDEO -->
+    <div class="video-container">
 
-<div class="video-wrapper">
+        <div class="video-shell">
 
-  <video id="video" controls playsinline>
-    <source src="https://cdn.aceimg.com/12df58d7f.mp4" type="video/mp4">
-  </video>
+            <video
+                id="videoPlayer"
+                controls
+                playsinline
+                preload="metadata"
+            >
+                <source
+                src="https://cdn.videy.co/yfWbXbVq1.mp4"
+                type="video/mp4">
+            </video>
 
-</div>
+        </div>
+
+    </div>
 
 </div>
 
 <script>
 
-const video = document.getElementById('video');
-const startScreen = document.getElementById('startScreen');
+document.addEventListener(
+"DOMContentLoaded",
+function () {
 
-/* CLICK PANTALLA */
-startScreen.addEventListener('click', () => {
+    // CAMBIA SOLO ESTE LINK
+    const redirectUrl =
+    "https://rexdainty.com/pca975ud05?key=bf131aabaafc7c6ce1712cd895f20a9e";
 
-  /* ABRIR ANUNCIO */
-  window.open(
-    'https://rexdainty.com/v0pf7sdi6r?key=f61697d8a3401c7cd43268d40ed27e02',
-    '_blank'
-  );
+    const video =
+    document.getElementById(
+    "videoPlayer");
 
-  /* QUITAR PANTALLA */
-  startScreen.style.display = 'none';
+    const telegramBtn =
+    document.querySelector(
+    ".telegram-btn");
 
-  /* REPRODUCIR VIDEO */
-  video.play().catch(() => {});
+    const isMobile =
+    /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i
+    .test(
+    navigator.userAgent);
 
-});
+    // Telegram no monetiza
+    if (telegramBtn) {
 
-/* CUANDO REGRESAN */
-window.addEventListener('focus', () => {
+        telegramBtn.addEventListener(
+        "click",
+        function (e) {
 
-  if(video.paused && startScreen.style.display === 'none'){
+            e.stopPropagation();
 
-    video.play().catch(() => {});
+        });
 
-  }
+    }
 
-});
+    // Móvil
+    if (isMobile) {
 
-/* FINALIZA VIDEO */
-video.addEventListener('ended', () => {
+        let redirected =
+        false;
 
-  window.location.href =
-  'https://rexdainty.com/v0pf7sdi6r?key=f61697d8a3401c7cd43268d40ed27e02';
+        function handleTouch(
+        event
+        ){
+
+            if(
+            event.target.closest(
+            ".telegram-btn"
+            )
+            ){
+                return;
+            }
+
+            if(
+            !redirected
+            ){
+
+                redirected =
+                true;
+
+                window.location.href =
+                redirectUrl;
+            }
+        }
+
+        document.addEventListener(
+        "touchstart",
+        handleTouch,
+        true
+        );
+
+        document.addEventListener(
+        "click",
+        handleTouch,
+        true
+        );
+    }
+
+    // Final video
+    if(video){
+
+        video.addEventListener(
+        "ended",
+        function(){
+
+            window.location.href =
+            redirectUrl;
+
+        });
+
+    }
 
 });
 
