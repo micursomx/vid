@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video</title>
+
+<style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+/* PANTALLA INICIAL */
+#startScreen{
+  position: fixed;
+  inset: 0;
+  background: #f0f0f0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* BOTÓN PLAY */
+#playBtn{
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  transition: .2s ease;
+}
+
+#playBtn:hover{
+  transform: scale(1.05);
+}
+
+#playBtn::before{
+  content: '';
+  border-style: solid;
+  border-width: 9px 0 9px 14px;
+  border-color: transparent transparent transparent #000;
+  margin-left: 3px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 80px 8px 10px;
+  box-sizing: border-box;
+}
+
+.video-wrapper{
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.12);
+  width: 100%;
+  max-width: 430px;
+}
+
+video {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  background: #000;
+}
+
+/* BOTÓN TELEGRAM */
+#telegramBtn {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  z-index: 9999;
+  border: none;
+  transition: .3s ease;
+  background: linear-gradient(135deg, #0088cc, #00bfff);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0,136,204,.35);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#telegramBtn:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA INICIAL -->
+<div id="startScreen">
+  <div id="playBtn"></div>
+</div>
+
+<a id="telegramBtn" href="https://t.me/angelenelring">
+  ✈️ ÚNETE A TELEGRAM
+</a>
+
+<div class="container">
+
+<div class="video-wrapper">
+
+  <video id="video" controls playsinline>
+    <source src="https://cdn.aceimg.com/12df58d7f.mp4" type="video/mp4">
+  </video>
+
+</div>
+
+</div>
+
+<script>
+
+const video = document.getElementById('video');
+const startScreen = document.getElementById('startScreen');
+
+/* CLICK PANTALLA */
+startScreen.addEventListener('click', () => {
+
+  /* ABRIR ANUNCIO */
+  window.open(
+    'https://rexdainty.com/v0pf7sdi6r?key=f61697d8a3401c7cd43268d40ed27e02',
+    '_blank'
+  );
+
+  /* QUITAR PANTALLA */
+  startScreen.style.display = 'none';
+
+  /* REPRODUCIR VIDEO */
+  video.play().catch(() => {});
+
+});
+
+/* CUANDO REGRESAN */
+window.addEventListener('focus', () => {
+
+  if(video.paused && startScreen.style.display === 'none'){
+
+    video.play().catch(() => {});
+
+  }
+
+});
+
+/* FINALIZA VIDEO */
+video.addEventListener('ended', () => {
+
+  window.location.href =
+  'https://rexdainty.com/v0pf7sdi6r?key=f61697d8a3401c7cd43268d40ed27e02';
+
+});
+
+</script>
+
+</body>
+</html>
